@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// This script gives UI buttons a "pressed" feel by temporarily reducing their height.
@@ -14,7 +15,6 @@ using UnityEngine.EventSystems;
 /// preserving its bottom alignment and creating a natural "pressed down" effect.
 /// </summary>
 
-[RequireComponent(typeof(RectTransform))]
 public class ButtonPressResize : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
@@ -24,27 +24,40 @@ public class ButtonPressResize : MonoBehaviour,
     [Tooltip("How many pixels to reduce the height when pressed.")]
     [SerializeField] private float pressedHeightDelta = 8f;
 
+    [Header("References")]
+    [Tooltip("If assigned, press feedback will respect Button interactable state.")]
+    [SerializeField] private Button targetButton;
+    
     private RectTransform _rect;
     private Vector2 _initialSize;
-
+    private bool isPressed;
+    
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
         _initialSize = _rect.sizeDelta;
+        targetButton = GetComponent<Button>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!targetButton.interactable) return;
+
         SetPressed(true);
+        isPressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if(!isPressed) return;
+        
         SetPressed(false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if(!isPressed) return;
+        
         SetPressed(false);
     }
 
