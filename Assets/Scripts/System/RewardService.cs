@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
 /// DevelopmentScene controller:
-/// - Reads simulated time from DevTimer
-/// - Calculates rewards (floor by minute)
-/// - Publishes calculated values via events.
+/// - Reads simulated time from Timer
+/// - Calculates rewards
 /// - Handles Collect using cached values
+/// - Calls UI Refresh functions.
 /// 
 /// Loot button is intentionally a no-op (placeholder).
 /// </summary>
@@ -43,7 +42,7 @@ public class RewardService : MonoBehaviour
 
     #region Calculation
     
-    //Calculates reward values based on current dev timer and stores them in cache.
+    //Calculates reward values based on current timer and stores them in cache.
     private void Calculate()
     {
         _cachedSeconds = timer.Seconds;
@@ -84,7 +83,7 @@ public class RewardService : MonoBehaviour
     #region Button Callbacks
 
     /// <summary>
-    /// Collect button: grants calculated resources and resets the dev timer (for quick retesting).
+    /// Collect button: grants calculated resources and resets the timer.
     /// </summary>
     public void Collect()
     {

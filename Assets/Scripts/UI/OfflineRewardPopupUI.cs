@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// UI-only script.
-/// Listens to DevRewardService state updates and refreshes visuals.
+/// Listens to RewardService state updates and refreshes visuals.
 /// No game logic or reward calculations should live here.
 /// </summary>
 public class OfflineRewardPopupUI : MonoBehaviour

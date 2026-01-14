@@ -1,5 +1,10 @@
 using System;
 
+/// <summary>
+/// Serializable data container.
+/// Stores last collect time and wallet values.
+/// </summary>
+
 [Serializable]
 public class OfflineSaveData
 {

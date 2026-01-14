@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Simple Development Debug Panel:
 /// - Displays Wallet totals (coins/hammers) and Speed multiplier
-/// - Allows speeding up / slowing down DevTimer with +/- keys
+/// - Allows speeding up / slowing down DevTimer with +/- buttons
 /// </summary>
 public class DevDebugUI : MonoBehaviour
 {

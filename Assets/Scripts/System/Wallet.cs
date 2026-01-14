@@ -1,7 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Minimal wallet for the case. Stores resources and allows adding amounts.
+/// Stores resources and allows adding amounts.
+/// Handles save/load if it's realtime utc version.
 /// </summary>
 public class Wallet : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Wallet : MonoBehaviour
         SaveLoadManager.LoadOrInitialize();
         InitializeWalletFromSave();
     }
+
+    #region Collectors
 
     public void AddCoins(int amount)
     {
@@ -42,6 +45,8 @@ public class Wallet : MonoBehaviour
         
     }
 
+    #endregion
+    
     public void InitializeWalletFromSave()
     {
         Coins = SaveLoadManager.Data.coins;

@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 /// <summary>
 /// Realtime UTC-based timer for offline duration.
-/// - Stores last collect UTC timestamp in a JSON file (persistentDataPath)
-/// - Updates Seconds as state (same pattern as DevTimer)
+/// - Handles last collect UTC timestamp in the JSON file.
+/// - Calculates offline duration using real UTC time.
 /// </summary>
 public class RealtimeUTCTimer : Timer
 {
@@ -32,7 +31,9 @@ public class RealtimeUTCTimer : Timer
         if (!paused)
             RecalculateSeconds();
     }
-
+    
+    #region Public API
+    
     public override void ResetToZero()
     {
         SaveLoadManager.Data.lastCollectUtcSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -40,7 +41,9 @@ public class RealtimeUTCTimer : Timer
 
         Seconds = 0;
     }
-
+    
+    #endregion
+    
     private void RecalculateSeconds()
     {
         long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
