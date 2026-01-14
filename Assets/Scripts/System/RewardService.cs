@@ -111,8 +111,9 @@ public class RewardService : MonoBehaviour
     
     private void ResetAfterCollect()
     {
-        timer.ResetToZero();
-
+        int earnedMinutes = Mathf.FloorToInt((float)(_cachedSeconds / 60.0));
+        timer.ConsumeMinutes(earnedMinutes);
+        
         _cachedCoins = 0;
         _cachedHammers = 0;
         _cachedCanCollect = false;

@@ -28,9 +28,12 @@ public class DevelopmentTimer : Timer
 
     #region Public API
 
-    public override  void ResetToZero()
+    public override void ConsumeMinutes(int minutes)
     {
-        Seconds = 0;
+        if (minutes <= 0) return;
+
+        double consumeSeconds = minutes * 60;
+        Seconds = Mathf.Max(0, (float)(Seconds - consumeSeconds));
     }
 
     #endregion

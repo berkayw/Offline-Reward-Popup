@@ -10,5 +10,5 @@ public abstract class Timer : MonoBehaviour
     public abstract double Seconds { get; protected set;}
 
     /// <summary> Resets the tracked duration to zero (used after Collect). </summary>
-    public abstract void ResetToZero();
+    public abstract void ConsumeMinutes(int minutes);
 }

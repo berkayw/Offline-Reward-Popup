@@ -34,14 +34,16 @@ public class RealtimeUTCTimer : Timer
     
     #region Public API
     
-    public override void ResetToZero()
+    public override void ConsumeMinutes(int minutes)
     {
-        SaveLoadManager.Data.lastCollectUtcSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        SaveLoadManager.Save();
+        if (minutes <= 0) return;
 
-        Seconds = 0;
+        long consumeSeconds = minutes * 60;
+        SaveLoadManager.Data.lastCollectUtcSeconds += consumeSeconds;
+
+        SaveLoadManager.Save();
+        RecalculateSeconds();
     }
-    
     #endregion
     
     private void RecalculateSeconds()
