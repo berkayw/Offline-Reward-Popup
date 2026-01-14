@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -9,20 +8,43 @@ public class Wallet : MonoBehaviour
     public int Coins { get; private set; }
     public int Hammers { get; private set; }
 
-    #region Public API
+    public bool isDevelopmentVersion; //dont use save-load for development version
+
+    private void Awake()
+    {
+        if(isDevelopmentVersion) return;
+
+        SaveLoadManager.LoadOrInitialize();
+        InitializeWalletFromSave();
+    }
 
     public void AddCoins(int amount)
     {
         if (amount <= 0) return;
         Coins += amount;
+
+        if(isDevelopmentVersion) return;
+
+        SaveLoadManager.Data.coins = Coins;
+        SaveLoadManager.Save();
+        
     }
 
     public void AddHammers(int amount)
     {
         if (amount <= 0) return;
         Hammers += amount;
+
+        if(isDevelopmentVersion) return;
+
+        SaveLoadManager.Data.hammers = Hammers;
+        SaveLoadManager.Save();
+        
     }
 
-    #endregion
-    
+    public void InitializeWalletFromSave()
+    {
+        Coins = SaveLoadManager.Data.coins;
+        Hammers = SaveLoadManager.Data.hammers;
+    }
 }

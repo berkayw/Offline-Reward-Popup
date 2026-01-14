@@ -66,6 +66,7 @@ public class RewardService : MonoBehaviour
     {
         float minuteProgress01 = (float)((_cachedSeconds % 60.0) / 60.0);
 
+        rewardPopupUI.RenderRatios(config.coinPerMinute, config.hammerPerMinute);
         rewardPopupUI.RenderDuration(_cachedSeconds);
         rewardPopupUI.RenderAmounts(_cachedCoins, _cachedHammers);
         rewardPopupUI.RenderBars(

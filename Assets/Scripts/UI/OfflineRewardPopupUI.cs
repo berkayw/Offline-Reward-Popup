@@ -13,6 +13,8 @@ public class OfflineRewardPopupUI : MonoBehaviour
     [SerializeField] private TMP_Text offlineDurationText;
     [SerializeField] private TMP_Text coinAmountText;
     [SerializeField] private TMP_Text hammerAmountText;
+    [SerializeField] private TMP_Text coinRatioText;
+    [SerializeField] private TMP_Text hammerRatioText;
     
     [Header("Bars (Fill RectTransforms)")]
     [Tooltip("Fill rect for the coin bar. Width is set based on progress (0..1).")]
@@ -57,6 +59,12 @@ public class OfflineRewardPopupUI : MonoBehaviour
         lootButtonImage.color = value ? lootDefaultColor : defaultDisabledColor;
     }
 
+    public void RenderRatios(int coinRatio, int hammerRatio)
+    {
+        coinRatioText.text = coinRatio + "/m";
+        hammerRatioText.text = hammerRatio + "/m";
+    }
+    
     public void RenderDuration(double totalSeconds)
     {
         offlineDurationText.text = FormatDuration(totalSeconds);

@@ -4,14 +4,10 @@ using UnityEngine;
 
 /// <summary>
 /// Simple Development Debug Panel:
-/// - Displays Wallet totals (coins/hammers)
+/// - Displays Wallet totals (coins/hammers) and Speed multiplier
 /// - Allows speeding up / slowing down DevTimer with +/- keys
-///
-/// Setup:
-/// - Create a small UI panel with TMP_Text fields.
-/// - Assign DevTimer, Wallet and text references in the inspector.
 /// </summary>
-public class DevDebugPanel : MonoBehaviour
+public class DevDebugUI : MonoBehaviour
 {
 
     [Header("References")]
@@ -41,7 +37,7 @@ public class DevDebugPanel : MonoBehaviour
     
     private void Start()
     {
-        RefreshUI(0,0);
+        RefreshUI(0,0); //placeholder parameters
     }
 
     private void OnEnable()
